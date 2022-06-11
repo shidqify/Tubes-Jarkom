@@ -73,27 +73,27 @@ if'__main__'==__name__:
 	R4.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
 		
 	#inisialisasi IP Address pada Interface setiap perangkat
-	HostA.cmd("ifconfig HostA-eth0 192.168.56.1 netmask 255.255.255.0")
-	HostA.cmd("ifconfig HostA-eth1 192.168.57.1 netmask 255.255.255.0")
+	HostA.cmd("ifconfig HostA-eth0 192.168.56.2 netmask 255.255.255.0")
+	HostA.cmd("ifconfig HostA-eth1 192.168.57.2 netmask 255.255.255.0")
 	
-	HostB.cmd("ifconfig HostB-eth0 192.168.58.1 netmask 255.255.255.0")
-	HostB.cmd("ifconfig HostB-eth1 192.168.59.1 netmask 255.255.255.0")
+	HostB.cmd("ifconfig HostB-eth0 192.168.58.2 netmask 255.255.255.0")
+	HostB.cmd("ifconfig HostB-eth1 192.168.59.2 netmask 255.255.255.0")
 	
-	R1.cmd("ifconfig R1-eth0 192.168.56.2 netmask 255.255.255.0")
-	R1.cmd("ifconfig R1-eth1 192.168.60.1 netmask 255.255.255.0")
-	R1.cmd("ifconfig R1-eth2 192.168.61.1 netmask 255.255.255.0")
+	R1.cmd("ifconfig R1-eth0 192.168.56.3 netmask 255.255.255.0")
+	R1.cmd("ifconfig R1-eth1 192.168.60.2 netmask 255.255.255.0")
+	R1.cmd("ifconfig R1-eth2 192.168.61.2 netmask 255.255.255.0")
 	
-	R2.cmd("ifconfig R2-eth0 192.168.57.2 netmask 255.255.255.0")
-	R2.cmd("ifconfig R2-eth1 192.168.62.1 netmask 255.255.255.0")
-	R2.cmd("ifconfig R2-eth2 192.168.63.1 netmask 255.255.255.0")
+	R2.cmd("ifconfig R2-eth0 192.168.57.3 netmask 255.255.255.0")
+	R2.cmd("ifconfig R2-eth1 192.168.62.2 netmask 255.255.255.0")
+	R2.cmd("ifconfig R2-eth2 192.168.63.2 netmask 255.255.255.0")
 	
-	R3.cmd("ifconfig R3-eth0 192.168.58.2 netmask 255.255.255.0")
-	R3.cmd("ifconfig R3-eth1 192.168.60.2 netmask 255.255.255.0")
-	R3.cmd("ifconfig R3-eth2 192.168.63.2 netmask 255.255.255.0")
+	R3.cmd("ifconfig R3-eth0 192.168.58.3 netmask 255.255.255.0")
+	R3.cmd("ifconfig R3-eth1 192.168.60.3 netmask 255.255.255.0")
+	R3.cmd("ifconfig R3-eth2 192.168.63.3 netmask 255.255.255.0")
 	
-	R4.cmd("ifconfig R4-eth0 192.168.59.2 netmask 255.255.255.0")
-	R4.cmd("ifconfig R4-eth1 192.168.62.2 netmask 255.255.255.0")
-	R4.cmd("ifconfig R4-eth2 192.168.61.2 netmask 255.255.255.0")
+	R4.cmd("ifconfig R4-eth0 192.168.59.3 netmask 255.255.255.0")
+	R4.cmd("ifconfig R4-eth1 192.168.62.3 netmask 255.255.255.0")
+	R4.cmd("ifconfig R4-eth2 192.168.61.3 netmask 255.255.255.0")
 	
 	#Routing setiap perangkat yang bertetangga
 	# HostA.cmd("ip rule add from 192.168.10.1 table 1")
