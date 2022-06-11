@@ -84,20 +84,20 @@ if'__main__'==__name__:
     R1.cmd("ifconfig R1-eth2 192.168.61.2 netmask 255.255.255.0")
 
     R2.cmd("ifconfig R2-eth0 192.168.57.3 netmask 255.255.255.0")
-    R2.cmd("ifconfig R2-eth1 192.168.62.2 netmask 255.255.255.0")
-    R2.cmd("ifconfig R2-eth2 192.168.63.2 netmask 255.255.255.0")
+    R2.cmd("ifconfig R2-eth1 192.168.63.2 netmask 255.255.255.0")
+    R2.cmd("ifconfig R2-eth2 192.168.62.2 netmask 255.255.255.0")
 
     R3.cmd("ifconfig R3-eth0 192.168.58.3 netmask 255.255.255.0")
     R3.cmd("ifconfig R3-eth1 192.168.60.3 netmask 255.255.255.0")
     R3.cmd("ifconfig R3-eth2 192.168.63.3 netmask 255.255.255.0")
 
     R4.cmd("ifconfig R4-eth0 192.168.59.3 netmask 255.255.255.0")
-    R4.cmd("ifconfig R4-eth1 192.168.62.3 netmask 255.255.255.0")
-    R4.cmd("ifconfig R4-eth2 192.168.61.3 netmask 255.255.255.0")
+    R4.cmd("ifconfig R4-eth1 192.168.61.3 netmask 255.255.255.0")
+    R4.cmd("ifconfig R4-eth2 192.168.62.3 netmask 255.255.255.0")
 
     #Testing IP
     HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
-    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R!
+    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
     HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
     HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
     HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
