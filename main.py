@@ -31,13 +31,13 @@ if'__main__'==__name__:
 
     #Menghubungkan antar device
     net.addLink(HostA,R1,cls=TCLink, **bandwidth1) #HostA-eth0 R1-eth0
-    # net.addLink(HostA,R2,cls=TCLink, **bandwidth1) #HostA-eth1 R2-eth0
+    net.addLink(HostA,R2,cls=TCLink, **bandwidth1) #HostA-eth1 R2-eth0
 
     net.addLink(HostB,R3,cls=TCLink, **bandwidth1) #HostB-eth0 R3-eth0
-    # net.addLink(HostB,R4,cls=TCLink, **bandwidth1) #HostB-eth1 R4-eth0
+    net.addLink(HostB,R4,cls=TCLink, **bandwidth1) #HostB-eth1 R4-eth0
 
     net.addLink(R1,R3,cls=TCLink, **bandwidth2) #R1-eth1 R3-eth1
-    # net.addLink(R1,R4,cls=TCLink, **bandwidth1) #R1-eth2 R4-eth1
+    net.addLink(R1,R4,cls=TCLink, **bandwidth1) #R1-eth2 R4-eth1
 
     net.addLink(R2,R3,cls=TCLink, **bandwidth1) #R2-eth1 R3-eth2
     net.addLink(R2,R4,cls=TCLink, **bandwidth2) #R2-eth2 R4-eth2
@@ -96,15 +96,15 @@ if'__main__'==__name__:
     R4.cmd("ifconfig R4-eth2 192.168.62.3 netmask 255.255.255.0")
 
     #Testing IP
-    HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
-    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
-    HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
-    HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
-    HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
-    R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
-    R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
-    R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
-    R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
+    # HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
+    # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
+    # HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
+    # HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
+    # HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
+    # R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
+    # R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
+    # R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
+    # R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
 
     #Routing setiap perangkat yang bertetangga
     HostA.cmd("ip rule add from 192.168.56.2 table 1")
@@ -189,14 +189,14 @@ if'__main__'==__name__:
     R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
 
     #Test IP after routing
-    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
-    HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
-    HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
-    HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
-    R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
-    R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
-    R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
-    R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
+    # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
+    # HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
+    # HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
+    # HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
+    # R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
+    # R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
+    # R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
+    # R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
 
     # R1.cmdPrint("tc qdisc del dev R1-eth0 root")
     # R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 20ms")
