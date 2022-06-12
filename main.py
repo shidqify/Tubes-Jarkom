@@ -31,13 +31,13 @@ if'__main__'==__name__:
 
     #Menghubungkan antar device
     net.addLink(HostA,R1,cls=TCLink, **bandwidth1) #HostA-eth0 R1-eth0
-    net.addLink(HostA,R2,cls=TCLink, **bandwidth1) #HostA-eth1 R2-eth0
+    # net.addLink(HostA,R2,cls=TCLink, **bandwidth1) #HostA-eth1 R2-eth0
 
     net.addLink(HostB,R3,cls=TCLink, **bandwidth1) #HostB-eth0 R3-eth0
-    net.addLink(HostB,R4,cls=TCLink, **bandwidth1) #HostB-eth1 R4-eth0
+    # net.addLink(HostB,R4,cls=TCLink, **bandwidth1) #HostB-eth1 R4-eth0
 
     net.addLink(R1,R3,cls=TCLink, **bandwidth2) #R1-eth1 R3-eth1
-    net.addLink(R1,R4,cls=TCLink, **bandwidth1) #R1-eth2 R4-eth1
+    # net.addLink(R1,R4,cls=TCLink, **bandwidth1) #R1-eth2 R4-eth1
 
     net.addLink(R2,R3,cls=TCLink, **bandwidth1) #R2-eth1 R3-eth2
     net.addLink(R2,R4,cls=TCLink, **bandwidth2) #R2-eth2 R4-eth2
