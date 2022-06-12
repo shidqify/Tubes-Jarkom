@@ -188,6 +188,16 @@ if'__main__'==__name__:
     R4.cmd("route add -net 192.168.60.0/24 gw 192.168.61.2")
     R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
 
+    #Test IP after routing
+    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
+    HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
+    HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
+    HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
+    R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
+    R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
+    R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
+    R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
+
     # R1.cmdPrint("tc qdisc del dev R1-eth0 root")
     # R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 20ms")
 
