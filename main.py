@@ -217,23 +217,23 @@ if'__main__'==__name__:
     #Membuat routing static
     R1.cmd("route add -net 192.168.58.0/24 gw 192.168.60.3")
     R1.cmd("route add -net 192.168.59.0/24 gw 192.168.61.3")
-    R1.cmd("route add -net 192.168.62.0/24 gw 192.168.61.3")
-    R1.cmd("route add -net 192.168.63.0/24 gw 192.168.60.3")
+    # R1.cmd("route add -net 192.168.62.0/24 gw 192.168.61.3")
+    # R1.cmd("route add -net 192.168.63.0/24 gw 192.168.60.3")
 
     R2.cmd("route add -net 192.168.58.0/24 gw 192.168.63.3")
     R2.cmd("route add -net 192.168.59.0/24 gw 192.168.62.3")
-    R2.cmd("route add -net 192.168.60.0/24 gw 192.168.63.3")
-    R2.cmd("route add -net 192.168.61.0/24 gw 192.168.62.3")
+    # R2.cmd("route add -net 192.168.60.0/24 gw 192.168.63.3")
+    # R2.cmd("route add -net 192.168.61.0/24 gw 192.168.62.3")
 
     R3.cmd("route add -net 192.168.56.0/24 gw 192.168.60.2")
     R3.cmd("route add -net 192.168.57.0/24 gw 192.168.63.2")
-    R3.cmd("route add -net 192.168.62.0/24 gw 192.168.63.2")
-    R3.cmd("route add -net 192.168.61.0/24 gw 192.168.60.2")
+    # R3.cmd("route add -net 192.168.62.0/24 gw 192.168.63.2")
+    # R3.cmd("route add -net 192.168.61.0/24 gw 192.168.60.2")
 
     R4.cmd("route add -net 192.168.56.0/24 gw 192.168.61.2")
     R4.cmd("route add -net 192.168.57.0/24 gw 192.168.62.2")
-    R4.cmd("route add -net 192.168.60.0/24 gw 192.168.61.2")
-    R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
+    # R4.cmd("route add -net 192.168.60.0/24 gw 192.168.61.2")
+    # R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
 
     #Test IP after routing
     # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
