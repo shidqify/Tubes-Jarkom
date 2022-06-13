@@ -11,8 +11,8 @@ if'__main__'==__name__:
     os.system('mn -c')
     setLogLevel('info')
     net = Mininet(link=TCLink)
-    key = "net.mptcp.mptcp_enabled"
-    value = 0
+    key = "net.mptcp.enabled"
+    value = 1
     p = Popen("sysctl -w %s=%s" %(key,value), shell=True, stdout=PIPE, stderr=PIPE)
     stdout, stderr = p.communicate()
     print("stdout=",stdout,"stderr=",stderr)
@@ -96,7 +96,7 @@ if'__main__'==__name__:
     R4.cmd("ifconfig R4-eth2 192.168.62.3 netmask 255.255.255.0")
 
     #Testing IP
-    # HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
+    HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
     # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
     # HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
     # HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
