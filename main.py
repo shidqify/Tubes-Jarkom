@@ -67,10 +67,14 @@ if'__main__'==__name__:
     R4.cmd("ifconfig R4-eth1 0")
     R4.cmd("ifconfig R4-eth2 0")
         
-    R1.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    R2.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    R3.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    R4.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
+    # R1.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
+    # R2.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
+    # R3.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
+    # R4.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
+    R1.cmd("sysctl net.ipv4.ip_forward=1")
+    R2.cmd("sysctl net.ipv4.ip_forward=1")
+    R3.cmd("sysctl net.ipv4.ip_forward=1")
+    R4.cmd("sysctl net.ipv4.ip_forward=1")
         
     #inisialisasi IP Address pada Interface setiap perangkat
     HostA.cmd("ifconfig HostA-eth0 192.168.56.2 netmask 255.255.255.0")
