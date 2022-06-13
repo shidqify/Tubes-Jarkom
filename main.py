@@ -111,7 +111,7 @@ if'__main__'==__name__:
     # R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
 
     #Routing lain
-    # R1.cmd('sysctl net.ipv4.ip_forward=1')
+    R1.cmd('sysctl net.ipv4.ip_forward=1')
     R1.cmd('ip route add 0.0.0.0/0 via 192.168.60.3')
     # r1.cmd('ip route add 192.168.1.0/24 via 192.168.255.6 dev R1-eth1')
     # r1.cmd('ip route add 192.168.255.8/30 via 192.168.255.6 dev R1-eth1')
@@ -119,7 +119,7 @@ if'__main__'==__name__:
     # r1.cmd('ip route add 192.168.2.0/24 via 192.168.255.6 dev R1-eth1')
     # r1.cmd('ip route add 192.168.3.0/24 via 192.168.255.6 dev R1-eth1')
 
-    # R2.cmd('sysctl net.ipv4.ip_forward=1')
+    R2.cmd('sysctl net.ipv4.ip_forward=1')
     R2.cmd('ip route add 0.0.0.0/0 via 192.168.63.3')
     R2.cmd('ip route add 192.168.59.0/24 via 192.168.62.3')
     # r2.cmd('ip route add 192.168.0.0/24 via 192.168.255.10 dev R2-eth1')
@@ -128,7 +128,7 @@ if'__main__'==__name__:
     # r2.cmd('ip route add 192.168.2.0/24 via 192.168.255.10 dev R2-eth1')
     # r2.cmd('ip route add 192.168.3.0/24 via 192.168.255.10 dev R2-eth1')
 
-    # R3.cmd('sysctl net.ipv4.ip_forward=1')
+    R3.cmd('sysctl net.ipv4.ip_forward=1')
     # r3.cmd('ip route add 0.0.0.0/0 via 192.168.255.1 dev R3-eth2')
     R3.cmd('ip route add 192.168.56.0/24 via 192.168.60.2')
     R3.cmd('ip route add 192.168.57.0/24 via 192.168.63.2')
@@ -142,7 +142,7 @@ if'__main__'==__name__:
     # r3.cmd('ip route add 192.168.255.12/30 via 192.168.255.1 dev R3-eth2')
     # r3.cmd('ip route add 192.168.3.0/24 via 192.168.255.1 dev R3-eth2')
 
-    # R4.cmd('sysctl net.ipv4.ip_forward=1')
+    R4.cmd('sysctl net.ipv4.ip_forward=1')
     R4.cmd('ip route add 0.0.0.0/0 via 192.168.62.2')
     # r4.cmd('ip route add 192.168.0.0/24 via 192.168.255.13 dev R4-eth2')
     # r4.cmd('ip route add 192.168.1.0/24 via 192.168.255.13 dev R4-eth2')
