@@ -78,37 +78,37 @@ if'__main__'==__name__:
         
     #inisialisasi IP Address pada Interface setiap perangkat
     HostA.cmd("ifconfig HostA-eth0 192.168.56.2 netmask 255.255.255.0")
-    HostA.cmd("ifconfig HostA-eth1 192.168.57.2 netmask 255.255.255.0")
+    HostA.cmd("ifconfig HostA-eth1 192.168.66.2 netmask 255.255.255.0")
 
-    HostB.cmd("ifconfig HostB-eth0 192.168.58.2 netmask 255.255.255.0")
-    HostB.cmd("ifconfig HostB-eth1 192.168.59.2 netmask 255.255.255.0")
+    HostB.cmd("ifconfig HostB-eth0 192.168.76.2 netmask 255.255.255.0")
+    HostB.cmd("ifconfig HostB-eth1 192.168.86.2 netmask 255.255.255.0")
 
     R1.cmd("ifconfig R1-eth0 192.168.56.3 netmask 255.255.255.0")
-    R1.cmd("ifconfig R1-eth1 192.168.60.2 netmask 255.255.255.0")
-    R1.cmd("ifconfig R1-eth2 192.168.61.2 netmask 255.255.255.0")
+    R1.cmd("ifconfig R1-eth1 192.168.96.2 netmask 255.255.255.0")
+    R1.cmd("ifconfig R1-eth2 192.168.106.2 netmask 255.255.255.0")
 
-    R2.cmd("ifconfig R2-eth0 192.168.57.3 netmask 255.255.255.0")
-    R2.cmd("ifconfig R2-eth1 192.168.63.2 netmask 255.255.255.0")
-    R2.cmd("ifconfig R2-eth2 192.168.62.2 netmask 255.255.255.0")
+    R2.cmd("ifconfig R2-eth0 192.168.66.3 netmask 255.255.255.0")
+    R2.cmd("ifconfig R2-eth1 192.168.126.2 netmask 255.255.255.0")
+    R2.cmd("ifconfig R2-eth2 192.168.116.2 netmask 255.255.255.0")
 
-    R3.cmd("ifconfig R3-eth0 192.168.58.3 netmask 255.255.255.0")
-    R3.cmd("ifconfig R3-eth1 192.168.60.3 netmask 255.255.255.0")
-    R3.cmd("ifconfig R3-eth2 192.168.63.3 netmask 255.255.255.0")
+    R3.cmd("ifconfig R3-eth0 192.168.76.3 netmask 255.255.255.0")
+    R3.cmd("ifconfig R3-eth1 192.168.96.3 netmask 255.255.255.0")
+    R3.cmd("ifconfig R3-eth2 192.168.126.3 netmask 255.255.255.0")
 
-    R4.cmd("ifconfig R4-eth0 192.168.59.3 netmask 255.255.255.0")
-    R4.cmd("ifconfig R4-eth1 192.168.61.3 netmask 255.255.255.0")
-    R4.cmd("ifconfig R4-eth2 192.168.62.3 netmask 255.255.255.0")
+    R4.cmd("ifconfig R4-eth0 192.168.86.3 netmask 255.255.255.0")
+    R4.cmd("ifconfig R4-eth1 192.168.106.3 netmask 255.255.255.0")
+    R4.cmd("ifconfig R4-eth2 192.168.116.3 netmask 255.255.255.0")
 
     #Testing IP
     HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
-    # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
-    # HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
-    # HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
-    # HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
-    # R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
-    # R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
-    # R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
-    # R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
+    HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
+    HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
+    HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
+    HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
+    R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
+    R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
+    R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
+    R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
 
     #Routing lain
     # HostA.cmd('sysctl net.ipv4.ip_forward=1')
@@ -154,86 +154,86 @@ if'__main__'==__name__:
     # # r4.cmd('ip route add 192.168.2.0/24 via 192.168.255.13 dev R4-eth2')
 
     #Routing setiap perangkat yang bertetangga
-    HostA.cmd("ip rule add from 192.168.56.2 table 1")
-    HostA.cmd("ip rule add from 192.168.57.2 table 2")
-    HostA.cmd("ip route add 192.168.56.0/24 dev HostA-eth0 scope link table 1")
-    HostA.cmd("ip route add default via 192.168.56.3 dev HostA-eth0 table 1")
-    HostA.cmd("ip route add 192.168.57.0/24 dev HostA-eth1 scope link table 2")
-    HostA.cmd("ip route add default via 192.168.57.3 dev HostA-eth1 table 2")
-    HostA.cmd("ip route add default scope global nexthop via 192.168.56.2 dev HostA-eth0")
+    # HostA.cmd("ip rule add from 192.168.56.2 table 1")
+    # HostA.cmd("ip rule add from 192.168.57.2 table 2")
+    # HostA.cmd("ip route add 192.168.56.0/24 dev HostA-eth0 scope link table 1")
+    # HostA.cmd("ip route add default via 192.168.56.3 dev HostA-eth0 table 1")
+    # HostA.cmd("ip route add 192.168.57.0/24 dev HostA-eth1 scope link table 2")
+    # HostA.cmd("ip route add default via 192.168.57.3 dev HostA-eth1 table 2")
+    # HostA.cmd("ip route add default scope global nexthop via 192.168.56.2 dev HostA-eth0")
 
-    HostB.cmd("ip rule add from 192.168.58.2 table 1")
-    HostB.cmd("ip rule add from 192.168.59.2 table 2")
-    HostB.cmd("ip route add 192.168.58.0/24 dev HostB-eth0 scope link table 1")
-    HostB.cmd("ip route add default via 192.168.58.3 dev HostB-eth0 table 1")
-    HostB.cmd("ip route add 192.168.59.0/24 dev HostB-eth1 scope link table 2")
-    HostB.cmd("ip route add default via 192.168.59.3 dev HostB-eth1 table 2")
-    HostB.cmd("ip route add default scope global nexthop via 192.168.58.3 dev HostB-eth0")
+    # HostB.cmd("ip rule add from 192.168.58.2 table 1")
+    # HostB.cmd("ip rule add from 192.168.59.2 table 2")
+    # HostB.cmd("ip route add 192.168.58.0/24 dev HostB-eth0 scope link table 1")
+    # HostB.cmd("ip route add default via 192.168.58.3 dev HostB-eth0 table 1")
+    # HostB.cmd("ip route add 192.168.59.0/24 dev HostB-eth1 scope link table 2")
+    # HostB.cmd("ip route add default via 192.168.59.3 dev HostB-eth1 table 2")
+    # HostB.cmd("ip route add default scope global nexthop via 192.168.58.3 dev HostB-eth0")
 
-    R1.cmd("ip rule add from 192.168.56.3 table 1")
-    R1.cmd("ip rule add from 192.168.60.2 table 2")
-    R1.cmd("ip rule add from 192.168.61.2 table 3")
-    R1.cmd("ip route add 192.168.56.0/24 dev R1-eth0 scope link table 1")
-    R1.cmd("ip route add default via 192.168.56.2 dev R1-eth0 table 1")
-    R1.cmd("ip route add 192.168.60.0/24 dev R1-eth1 scope link table 2")
-    R1.cmd("ip route add default via 192.168.60.3 dev R1-eth1 table 2")
-    R1.cmd("ip route add 192.168.61.0/24 dev R1-eth2 scope link table 3")
-    R1.cmd("ip route add default via 192.168.61.3 dev R1-eth2 table 3")
-    R1.cmd("ip route add default scope global nexthop via 192.168.56.2 dev R1-eth0")
+    # R1.cmd("ip rule add from 192.168.56.3 table 1")
+    # R1.cmd("ip rule add from 192.168.60.2 table 2")
+    # R1.cmd("ip rule add from 192.168.61.2 table 3")
+    # R1.cmd("ip route add 192.168.56.0/24 dev R1-eth0 scope link table 1")
+    # R1.cmd("ip route add default via 192.168.56.2 dev R1-eth0 table 1")
+    # R1.cmd("ip route add 192.168.60.0/24 dev R1-eth1 scope link table 2")
+    # R1.cmd("ip route add default via 192.168.60.3 dev R1-eth1 table 2")
+    # R1.cmd("ip route add 192.168.61.0/24 dev R1-eth2 scope link table 3")
+    # R1.cmd("ip route add default via 192.168.61.3 dev R1-eth2 table 3")
+    # R1.cmd("ip route add default scope global nexthop via 192.168.56.2 dev R1-eth0")
 
-    R2.cmd("ip rule add from 192.168.57.3 table 1")
-    R2.cmd("ip rule add from 192.168.63.2 table 2")
-    R2.cmd("ip rule add from 192.168.62.2 table 3")
-    R2.cmd("ip route add 192.168.57.0/24 dev R2-eth0 scope link table 1")
-    R2.cmd("ip route add default via 192.168.57.3 dev R2-eth0 table 1")
-    R2.cmd("ip route add 192.168.63.0/24 dev R2-eth1 scope link table 2")
-    R2.cmd("ip route add default via 192.168.63.3 dev R2-eth1 table 2")
-    R2.cmd("ip route add 192.168.62.0/24 dev R2-eth2 scope link table 3")
-    R2.cmd("ip route add default via 192.168.62.3 dev R2-eth2 table 3")
-    R2.cmd("ip route add default scope global nexthop via 192.168.57.3 dev R2-eth0")
+    # R2.cmd("ip rule add from 192.168.57.3 table 1")
+    # R2.cmd("ip rule add from 192.168.63.2 table 2")
+    # R2.cmd("ip rule add from 192.168.62.2 table 3")
+    # R2.cmd("ip route add 192.168.57.0/24 dev R2-eth0 scope link table 1")
+    # R2.cmd("ip route add default via 192.168.57.3 dev R2-eth0 table 1")
+    # R2.cmd("ip route add 192.168.63.0/24 dev R2-eth1 scope link table 2")
+    # R2.cmd("ip route add default via 192.168.63.3 dev R2-eth1 table 2")
+    # R2.cmd("ip route add 192.168.62.0/24 dev R2-eth2 scope link table 3")
+    # R2.cmd("ip route add default via 192.168.62.3 dev R2-eth2 table 3")
+    # R2.cmd("ip route add default scope global nexthop via 192.168.57.3 dev R2-eth0")
 
-    R3.cmd("ip rule add from 192.168.58.3 table 1")
-    R3.cmd("ip rule add from 192.168.60.3 table 2")
-    R3.cmd("ip rule add from 192.168.63.3 table 3")
-    R3.cmd("ip route add 192.168.58.0/24 dev R3-eth0 scope link table 1")
-    R3.cmd("ip route add default via 192.168.58.2 dev R3-eth0 table 1")
-    R3.cmd("ip route add 192.168.60.0/24 dev R3-eth1 scope link table 2")
-    R3.cmd("ip route add default via 192.168.60.2 dev R3-eth1 table 2")
-    R3.cmd("ip route add 192.168.63.0/24 dev R3-eth2 scope link table 3")
-    R3.cmd("ip route add default via 192.168.63.2 dev R3-eth2 table 3")
-    R3.cmd("ip route add default scope global nexthop via 192.168.58.2 dev R3-eth0")
+    # R3.cmd("ip rule add from 192.168.58.3 table 1")
+    # R3.cmd("ip rule add from 192.168.60.3 table 2")
+    # R3.cmd("ip rule add from 192.168.63.3 table 3")
+    # R3.cmd("ip route add 192.168.58.0/24 dev R3-eth0 scope link table 1")
+    # R3.cmd("ip route add default via 192.168.58.2 dev R3-eth0 table 1")
+    # R3.cmd("ip route add 192.168.60.0/24 dev R3-eth1 scope link table 2")
+    # R3.cmd("ip route add default via 192.168.60.2 dev R3-eth1 table 2")
+    # R3.cmd("ip route add 192.168.63.0/24 dev R3-eth2 scope link table 3")
+    # R3.cmd("ip route add default via 192.168.63.2 dev R3-eth2 table 3")
+    # R3.cmd("ip route add default scope global nexthop via 192.168.58.2 dev R3-eth0")
 
-    R4.cmd("ip rule add from 192.168.59.3 table 1")
-    R4.cmd("ip rule add from 192.168.61.3 table 2")
-    R4.cmd("ip rule add from 192.168.62.3 table 3")
-    R4.cmd("ip route add 192.168.59.0/24 dev R4-eth0 scope link table 1")
-    R4.cmd("ip route add default via 192.168.59.2 dev R4-eth0 table 1")
-    R4.cmd("ip route add 192.168.61.0/24 dev R4-eth1 scope link table 2")
-    R4.cmd("ip route add default via 192.168.61.2 dev R4-eth1 table 2")
-    R4.cmd("ip route add 192.168.62.0/24 dev R4-eth2 scope link table 3")
-    R4.cmd("ip route add default via 192.168.62.2 dev R4-eth2 table 3")
-    R4.cmd("ip route add default scope global nexthop via 192.168.59.2 dev R4-eth0")
+    # R4.cmd("ip rule add from 192.168.59.3 table 1")
+    # R4.cmd("ip rule add from 192.168.61.3 table 2")
+    # R4.cmd("ip rule add from 192.168.62.3 table 3")
+    # R4.cmd("ip route add 192.168.59.0/24 dev R4-eth0 scope link table 1")
+    # R4.cmd("ip route add default via 192.168.59.2 dev R4-eth0 table 1")
+    # R4.cmd("ip route add 192.168.61.0/24 dev R4-eth1 scope link table 2")
+    # R4.cmd("ip route add default via 192.168.61.2 dev R4-eth1 table 2")
+    # R4.cmd("ip route add 192.168.62.0/24 dev R4-eth2 scope link table 3")
+    # R4.cmd("ip route add default via 192.168.62.2 dev R4-eth2 table 3")
+    # R4.cmd("ip route add default scope global nexthop via 192.168.59.2 dev R4-eth0")
 
-    #Membuat routing static
-    R1.cmd("route add -net 192.168.58.0/24 gw 192.168.60.3")
-    R1.cmd("route add -net 192.168.59.0/24 gw 192.168.61.3")
+    # #Membuat routing static
+    # R1.cmd("route add -net 192.168.58.0/24 gw 192.168.60.3")
+    # R1.cmd("route add -net 192.168.59.0/24 gw 192.168.61.3")
     # R1.cmd("route add -net 192.168.62.0/24 gw 192.168.61.3")
     # R1.cmd("route add -net 192.168.63.0/24 gw 192.168.60.3")
 
-    R2.cmd("route add -net 192.168.58.0/24 gw 192.168.63.3")
-    R2.cmd("route add -net 192.168.59.0/24 gw 192.168.62.3")
-    # R2.cmd("route add -net 192.168.60.0/24 gw 192.168.63.3")
-    # R2.cmd("route add -net 192.168.61.0/24 gw 192.168.62.3")
+    # R2.cmd("route add -net 192.168.58.0/24 gw 192.168.63.3")
+    # R2.cmd("route add -net 192.168.59.0/24 gw 192.168.62.3")
+    # # R2.cmd("route add -net 192.168.60.0/24 gw 192.168.63.3")
+    # # R2.cmd("route add -net 192.168.61.0/24 gw 192.168.62.3")
 
-    R3.cmd("route add -net 192.168.56.0/24 gw 192.168.60.2")
-    R3.cmd("route add -net 192.168.57.0/24 gw 192.168.63.2")
-    # R3.cmd("route add -net 192.168.62.0/24 gw 192.168.63.2")
-    # R3.cmd("route add -net 192.168.61.0/24 gw 192.168.60.2")
+    # R3.cmd("route add -net 192.168.56.0/24 gw 192.168.60.2")
+    # R3.cmd("route add -net 192.168.57.0/24 gw 192.168.63.2")
+    # # R3.cmd("route add -net 192.168.62.0/24 gw 192.168.63.2")
+    # # R3.cmd("route add -net 192.168.61.0/24 gw 192.168.60.2")
 
-    R4.cmd("route add -net 192.168.56.0/24 gw 192.168.61.2")
-    R4.cmd("route add -net 192.168.57.0/24 gw 192.168.62.2")
-    # R4.cmd("route add -net 192.168.60.0/24 gw 192.168.61.2")
-    # R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
+    # R4.cmd("route add -net 192.168.56.0/24 gw 192.168.61.2")
+    # R4.cmd("route add -net 192.168.57.0/24 gw 192.168.62.2")
+    # # R4.cmd("route add -net 192.168.60.0/24 gw 192.168.61.2")
+    # # R4.cmd("route add -net 192.168.63.0/24 gw 192.168.62.2")
 
     #Test IP after routing
     # HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
