@@ -254,13 +254,13 @@ if'__main__'==__name__:
     # #R3.cmdPrint("tc qdisc del dev R3-eth0 root")
     # #R3.cmdPrint("tc qdisc add dev R3-eth0 root netem delay 40ms")
 
-    # time.sleep(2)
-    # # run background traffic
-    # HostB.cmd("iperf -s &") #Buat server
-    # HostB.cmd("tcpdump -w test.pcap &") #Bikin file wireshark
-    # HostA.cmd("iperf -c 192.168.30.1 -t 100 &") #Buat client dan BEBAN HIDUP
-    # time.sleep(2)
-    # HostA.cmd("iperf -c 192.168.30.1") #BEBAN HIDUP
+    time.sleep(2)
+    # run background traffic
+    HostB.cmd("iperf -s &") #Buat server
+    HostB.cmd("tcpdump -w test.pcap &") #Bikin file wireshark
+    HostA.cmd("iperf -c 192.168.76.2 -t 100 &") #Buat client dan BEBAN HIDUP
+    time.sleep(2)
+    HostA.cmd("iperf -c 192.168.76.2") #BEBAN HIDUP
 
     CLI(net)
 
