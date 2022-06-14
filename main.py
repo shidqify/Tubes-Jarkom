@@ -102,13 +102,13 @@ if'__main__'==__name__:
     #Testing IP
     HostA, HostB, R1, R2, R3, R4 = net.get('HostA', 'HostB', 'R1', 'R2', 'R3', 'R4')
     HostA.cmdPrint('ping -c 4 192.168.56.3')    # A to R1
-    HostA.cmdPrint('ping -c 4 192.168.57.3')    # A to R2
-    HostB.cmdPrint('ping -c 4 192.168.58.3')     # B to R3
-    HostB.cmdPrint('ping -c 4 192.168.59.3')     # B to R4
-    R1.cmdPrint('ping -c 4 192.168.60.3')  # R1 to R3
-    R1.cmdPrint('ping -c 4 192.168.61.3')  # R1 to R4
-    R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
-    R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
+    HostA.cmdPrint('ping -c 4 192.168.66.3')    # A to R2
+    HostB.cmdPrint('ping -c 4 192.168.76.3')     # B to R3
+    HostB.cmdPrint('ping -c 4 192.168.86.3')     # B to R4
+    R1.cmdPrint('ping -c 4 192.168.96.3')  # R1 to R3
+    R1.cmdPrint('ping -c 4 192.168.106.3')  # R1 to R4
+    R2.cmdPrint('ping -c 4 192.168.126.3') # R2 to R3
+    R2.cmdPrint('ping -c 4 192.168.116.3') # R2 to R4
 
     #Routing lain
     # HostA.cmd('sysctl net.ipv4.ip_forward=1')
