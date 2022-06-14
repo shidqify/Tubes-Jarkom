@@ -163,7 +163,7 @@ if'__main__'==__name__:
     HostA.cmd("ip route add default scope global nexthop via 192.168.56.2 dev HostA-eth0")
 
     HostB.cmd("ip rule add from 192.168.76.2 table 1")
-    HostB.cmd("ip rule add from 192.168.60.2 table 2")
+    HostB.cmd("ip rule add from 192.168.86.2 table 2")
     HostB.cmd("ip route add 192.168.76.0/24 dev HostB-eth0 scope link table 1")
     HostB.cmd("ip route add default via 192.168.76.3 dev HostB-eth0 table 1")
     HostB.cmd("ip route add 192.168.86.0/24 dev HostB-eth1 scope link table 2")
@@ -245,14 +245,14 @@ if'__main__'==__name__:
     # R2.cmdPrint('ping -c 4 192.168.63.3') # R2 to R3
     # R2.cmdPrint('ping -c 4 192.168.62.3') # R2 to R4
 
-    # R1.cmdPrint("tc qdisc del dev R1-eth0 root")
-    # R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 20ms")
+    R1.cmdPrint("tc qdisc del dev R1-eth0 root")
+    R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 20ms")
 
-    # #R2.cmdPrint("tc qdisc del dev R2-eth1 root")
-    # #R2.cmdPrint("tc qdisc add dev R2-eth1 root netem loss 20%")
+    #R2.cmdPrint("tc qdisc del dev R2-eth1 root")
+    #R2.cmdPrint("tc qdisc add dev R2-eth1 root netem loss 20%")
 
-    # #R3.cmdPrint("tc qdisc del dev R3-eth0 root")
-    # #R3.cmdPrint("tc qdisc add dev R3-eth0 root netem delay 40ms")
+    #R3.cmdPrint("tc qdisc del dev R3-eth0 root")
+    #R3.cmdPrint("tc qdisc add dev R3-eth0 root netem delay 40ms")
 
     time.sleep(2)
     # run background traffic
