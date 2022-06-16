@@ -117,7 +117,7 @@ if'__main__'==__name__:
     HostA.cmd("ip route add default via 192.168.56.3 dev HostA-eth0 table 1")
     HostA.cmd("ip route add 192.168.66.0/24 dev HostA-eth1 scope link table 2")
     HostA.cmd("ip route add default via 192.168.66.3 dev HostA-eth1 table 2")
-    HostA.cmd("ip route add default scope global nexthop via 192.168.56.2 dev HostA-eth0")
+    HostA.cmd("ip route add default scope global nexthop via 192.168.56.3 dev HostA-eth0")
 
     HostB.cmd("ip rule add from 192.168.76.2 table 1")
     HostB.cmd("ip rule add from 192.168.86.2 table 2")
@@ -192,8 +192,8 @@ if'__main__'==__name__:
     R4.cmd("route add -net 192.168.96.0/24 gw 192.168.106.2")
     R4.cmd("route add -net 192.168.126.0/24 gw 192.168.116.2")
 
-    # R1.cmdPrint("tc qdisc del dev R1-eth0 root")
-    # R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 20ms")
+    R1.cmdPrint("tc qdisc del dev R1-eth0 root")
+    R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 100ms")
 
     #R2.cmdPrint("tc qdisc del dev R2-eth1 root")
     #R2.cmdPrint("tc qdisc add dev R2-eth1 root netem loss 20%")
@@ -208,6 +208,14 @@ if'__main__'==__name__:
     # HostA.cmd("iperf -c 192.168.76.2 -t 100 &") #Buat client dan BEBAN HIDUP
     # time.sleep(2)
     # HostA.cmd("iperf -c 192.168.76.2") #BEBAN HIDUP
+   
+    time.sleep(2)
+    # HostB.cmd("tcpdump -w test.pcap &")
+    # run background traffic
+    HostB.cmd("iperf -s &") 
+    HostA.cmd("iperf -c 192.168.76.2 -t 100 &") 
+    time.sleep(2)
+    HostA.cmd("iperf -c 192.168.76.2") 
 
     CLI(net)
 
