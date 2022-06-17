@@ -67,10 +67,6 @@ if'__main__'==__name__:
     R4.cmd("ifconfig R4-eth1 0")
     R4.cmd("ifconfig R4-eth2 0")
         
-    # R1.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    # R2.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    # R3.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
-    # R4.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
     R1.cmd("sysctl net.ipv4.ip_forward=1")
     R2.cmd("sysctl net.ipv4.ip_forward=1")
     R3.cmd("sysctl net.ipv4.ip_forward=1")
@@ -193,27 +189,21 @@ if'__main__'==__name__:
     R4.cmd("route add -net 192.168.126.0/24 gw 192.168.116.2")
 
     R1.cmdPrint("tc qdisc del dev R1-eth0 root")
-    R1.cmdPrint("tc qdisc add dev R1-eth0 root netem delay 100ms")
+    R1.cmdPrint("tc qdisc add dev R1-eth0 root handle 1: pfifo limit 100")
 
-    #R2.cmdPrint("tc qdisc del dev R2-eth1 root")
-    #R2.cmdPrint("tc qdisc add dev R2-eth1 root netem loss 20%")
+    R2.cmdPrint("tc qdisc del dev R2-eth1 root")
+    R2.cmdPrint("tc qdisc add dev R2-eth1 root handle 1: pfifo limit 40")
 
-    #R3.cmdPrint("tc qdisc del dev R3-eth0 root")
-    #R3.cmdPrint("tc qdisc add dev R3-eth0 root netem delay 40ms")
+    R3.cmdPrint("tc qdisc del dev R3-eth0 root")
+    R3.cmdPrint("tc qdisc add dev R3-eth0 root handle 1: pfifo limit 60")
 
-    # time.sleep(2)
-    # # run background traffic
-    # HostB.cmd("iperf -s &") #Buat server
-    # HostB.cmd("tcpdump -w test.pcap &") #Bikin file wireshark
-    # HostA.cmd("iperf -c 192.168.76.2 -t 100 &") #Buat client dan BEBAN HIDUP
-    # time.sleep(2)
-    # HostA.cmd("iperf -c 192.168.76.2") #BEBAN HIDUP
    
     time.sleep(2)
     # HostB.cmd("tcpdump -w test.pcap &")
     # run background traffic
-    HostB.cmd("iperf -s &") 
+    HostA.cmd("iperf -s &") 
     HostA.cmd("iperf -c 192.168.76.2 -t 100 &") 
+    HostB.cmd("tcpdump -w buffer_20.pcap &")
     time.sleep(2)
     HostA.cmd("iperf -c 192.168.76.2") 
 
